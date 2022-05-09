@@ -1,9 +1,9 @@
 "落叶捎来讯息：在我们的故乡，提瓦特，旅行者成为了艾尔登之王”。
 亚坛高原：
-![image](![亚坛高原](https://user-images.githubusercontent.com/54904760/167329454-498246a4-1c66-44a2-b1a4-d53c2a11b905.png))
+![亚坛高原](https://user-images.githubusercontent.com/54904760/167329881-99730f4d-e772-4a75-8ba6-978440916888.png)
 米凯拉的圣树：
-![image](![亚坛高原](![干枯树林](https://user-images.githubusercontent.com/54904760/167329549-b00364f5-be53-40ab-846a-08b7ff071704.png)))
+![image](https://github.com/Algernon98/pygame-in-HNU/blob/material/71e7c8de636085f2860d60506f0d6dc4af85a92e.jpg%40942w_942h_progressive.webp)
 须弥教令院：
-![image](![亚坛高原](![干枯树林](![低语森林](https://user-images.githubusercontent.com/54904760/167329620-ee1df932-0a0f-4c3b-95c0-5363f4326a08.png))))
+![image](https://github.com/Algernon98/pygame-in-HNU/blob/material/71e7c8de636085f2860d60506f0d6dc4af85a92e.jpg%40942w_942h_progressive.webp)
 层岩巨渊——砂流之庭：
-![image](![亚坛高原](![干枯树林](![低语森林](![3](https://user-images.githubusercontent.com/54904760/167329764-0b6aeeca-11df-4795-b297-90f3a21738e0.jpg)))))
+![image](https://github.com/Algernon98/pygame-in-HNU/blob/material/71e7c8de636085f2860d60506f0d6dc4af85a92e.jpg%40942w_942h_progressive.webp)
