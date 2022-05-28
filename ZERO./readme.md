@@ -42,6 +42,7 @@
 ![image](https://user-images.githubusercontent.com/54904760/170821213-339cef78-9e7c-4d6d-8a04-41c45d8f9fec.png)
 ![image](https://user-images.githubusercontent.com/54904760/170821222-f58b9c1b-e3f9-4d04-af73-07dfabba5631.png)
 ![image](https://user-images.githubusercontent.com/54904760/170821227-a32c8fb0-8bef-4d25-83ce-3a7efdb71cf6.png)
+
 功能实现：unity游戏引擎，python，AE,PR，Ubuntu
 核心玩法：文字解密，走剧情探索
 辅助玩法：pygame作为主角在地下世界闯关时的解密，以游戏的形式代替枯燥的密码解谜。
@@ -57,6 +58,7 @@ Algernon98/pygame-in-HNU: python project in HuNan University (github.com)
 以其深度学习“Hello World”的称号，呼应“天元”这一哲学与棋道双重含义。
 
 ![image](https://user-images.githubusercontent.com/54904760/170821254-47ec6231-4c61-4396-be00-9611e06c3272.png)
+
 详情可见博客：
 [【Python机器学习基础教程】（三）_仿生程序员会梦见电子羊吗的博客-CSDN博客](https://blog.csdn.net/Algernon98/article/details/124537180?spm=1001.2014.3001.5501)
 ![image](https://user-images.githubusercontent.com/54904760/170821286-8e9119cc-1d0f-42f9-aa1b-d4e2912a7e3c.png)
