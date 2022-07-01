@@ -1,0 +1,375 @@
+from tkinter import *
+from random import *
+import threading
+from tkinter.messagebox import showinfo
+from tkinter.messagebox import askquestion
+import threading
+from time import sleep
+brick = [
+        [
+            [
+                [0, 1, 1],
+                [1, 1, 0],
+                [0, 0, 0]
+            ],
+            [
+                [1, 0, 0],
+                [1, 1, 0],
+                [0, 1, 0]
+            ],
+            [
+                [0, 1, 1],
+                [1, 1, 0],
+                [0, 0, 0]
+            ],
+            [
+                [1, 0, 0],
+                [1, 1, 0],
+                [0, 1, 0]
+            ]
+        ],
+        [
+            [
+                [1, 1, 1],
+                [1, 0, 0],
+                [0, 0, 0]
+            ],
+            [
+                [0, 1, 1],
+                [0, 0, 1],
+                [0, 0, 1]
+            ],
+            [
+                [0, 0, 0],
+                [0, 0, 1],
+                [1, 1, 1]
+            ],
+            [
+                [1, 0, 0],
+                [1, 0, 0],
+                [1, 1, 0]
+            ]
+        ],
+        [
+            [
+                [1, 1, 1],
+                [0, 0, 1],
+                [0, 0, 0]
+            ],
+            [
+                [0, 0, 1],
+                [0, 0, 1],
+                [0, 1, 1]
+            ],
+            [
+                [0, 0, 0],
+                [1, 0, 0],
+                [1, 1, 1]
+            ],
+            [
+                [1, 1, 0],
+                [1, 0, 0],
+                [1, 0, 0]
+            ]
+        ],
+        [
+            [
+                [0, 0, 0],
+                [0, 1, 1],
+                [0, 1, 1]
+            ],
+            [
+                [0, 0, 0],
+                [0, 1, 1],
+                [0, 1, 1]
+            ],
+            [
+                [0, 0, 0],
+                [0, 1, 1],
+                [0, 1, 1]
+            ],
+            [
+                [0, 0, 0],
+                [0, 1, 1],
+                [0, 1, 1]
+            ]
+        ],
+        [
+            [
+                [1, 1, 1],
+                [0, 1, 0],
+                [0, 0, 0]
+            ],
+            [
+                [0, 0, 1],
+                [0, 1, 1],
+                [0, 0, 1]
+            ],
+            [
+                [0, 0, 0],
+                [0, 1, 0],
+                [1, 1, 1]
+            ],
+            [
+                [1, 0, 0],
+                [1, 1, 0],
+                [1, 0, 0]
+            ]
+        ],
+        [
+            [
+                [0, 1, 0],
+                [0, 1, 0],
+                [0, 1, 0]
+
+            ],
+            [
+                [0, 0, 0],
+                [1, 1, 1],
+                [0, 0, 0]
+
+            ],
+            [
+                [0, 1, 0],
+                [0, 1, 0],
+                [0, 1, 0]
+            ],
+            [
+                [0, 0, 0],
+                [1, 1, 1],
+                [0, 0, 0]
+            ]
+        ],
+        [
+            [
+                [1, 1, 0],
+                [0, 1, 1],
+                [0, 0, 0]
+            ],
+            [
+                [0, 0, 1],
+                [0, 1, 1],
+                [0, 1, 0]
+            ],
+            [
+                [0, 0, 0],
+                [1, 1, 0],
+                [0, 1, 1]
+            ],
+            [
+                [0, 1, 0],
+                [1, 1, 0],
+                [1, 0, 0]
+            ]
+        ]
+
+    ]
+
+class View(object):
+    # 是否开始
+    start = True
+    # 是否到达底部
+    isDown = True
+    isPause = False
+    # 窗体
+    window = None
+    # frame
+    frame1 = None
+    frame2 = None
+
+    # 按钮
+    btnStart = None
+
+    # 绘图类
+    canvas = None
+    canvas1 = None
+
+    # 标题
+    title = "Python暑期课程设计"
+    # 宽和高
+    width = 450
+    height = 670
+
+    # 行和列
+    rows = 20
+    cols = 10
+
+    # 下降方块的线程
+    downThread = None
+
+    # 几种方块
+    brick=brick
+
+    # 当前的方块
+    #curBrick = None
+    curBrick=None
+    # 当前方块数组
+    arr = None
+    arr1 = None
+    # 当前方块形状
+    shape = -1
+    # 当前方块的行和列（最左上角）
+    curRow = -10
+    curCol = -10
+
+    # 背景
+    back = list()
+    # 格子
+    gridBack = list()
+    preBack = list()
+    # 初始化
+    def init(self):
+
+        for i in range(0, self.rows):
+            self.back.insert(i, list())
+            self.gridBack.insert(i, list())
+
+        for i in range(0, self.rows):
+
+            for j in range(0, self.cols):
+                self.back[i].insert(j, 0)
+                self.gridBack[i].insert(j, self.canvas.create_rectangle(30 * j, 30 * i, 30 * (j + 1), 30 * (i + 1),
+                                                                        fill="red"))
+
+        for i in range(0, 3):
+            self.preBack.insert(i, list())
+
+        for i in range(0, 3):
+
+            for j in range(0, 3):
+                self.preBack[i].insert(j, self.canvas1.create_rectangle(30 * j, 30 * i, 30 * (j + 1), 30 * (i + 1),
+                                                                        fill="red"))
+
+                # 绘制游戏的格子
+    def drawRect(self):
+        for i in range(0, self.rows):
+
+            for j in range(0, self.cols):
+
+                if self.back[i][j] == 1:
+
+                    self.canvas.itemconfig(self.gridBack[i][j], fill="purple", outline="white")#掉落之后的方块，填充色、轮廓色
+
+                elif self.back[i][j] == 0:
+
+                    self.canvas.itemconfig(self.gridBack[i][j], fill="black", outline="white") #棋盘格子的填充色、轮廓色
+
+                    # 绘制预览方块
+        for i in range(0, len(self.arr1)):
+
+            for j in range(0, len(self.arr1[i])):
+
+                if self.arr1[i][j] == 0:
+
+                    self.canvas1.itemconfig(self.preBack[i][j], fill="black", outline="white")
+
+                elif self.arr1[i][j] == 1:
+
+                    self.canvas1.itemconfig(self.preBack[i][j], fill="orange", outline="white")
+
+                    # 绘制当前正在运动的方块
+    def clickStart(self):
+
+        self.start = True
+
+        for i in range(0, self.rows):
+
+            for j in range(0, self.cols):
+                self.back[i][j] = 0
+                self.canvas.itemconfig(self.gridBack[i][j], fill="black", outline="white")
+
+        for i in range(0, len(self.arr)):
+
+            for j in range(0, len(self.arr[i])):
+                self.canvas1.itemconfig(self.preBack[i][j], fill="black", outline="white")
+
+        #self.getCurBrick()
+        self.drawRect()
+
+        self.downThread = threading.Thread(target=self.brickDown, args=())
+        self.downThread.start()
+
+    def clickPause(self):
+        self.isPause = not self.isPause
+        print(self.isPause)
+        if not self.isPause:
+            self.btnPause["text"] = "暂停"
+        else:
+            self.btnPause["text"] = "恢复"
+
+    def clickReStart(self):
+        ackRestart = askquestion("remake！好耶！", "光速重开?")
+        if ackRestart == 'yes':
+            self.clickStart()
+        else:
+            return
+
+    def clickQuit(self):
+        ackQuit = askquestion("就走了？", "没你我可怎么活啊！")
+        if ackQuit == 'yes':
+            self.window.destroy()
+            exit()
+    def getCurBrick(self):
+
+        self.curBrick = randint(0, len(self.brick) -1)
+        self.shape = 0
+        # 当前方块数组
+        self.arr = self.brick[self.curBrick][self.shape]
+
+       # self.arr1 = self.arr
+        self.arr1 = self.brick[self.curBrick][self.shape]
+        self.curRow = 0
+        self.curCol = 1
+
+        # 是否到底部为False
+        self.isDown = False
+    # 获得当前的方块
+    def __init__(self):
+
+        self.window = Tk()
+        self.window.title(self.title)
+        self.window.minsize(self.width, self.height)
+        self.window.maxsize(self.width, self.height)
+
+        self.frame1 = Frame(self.window, width=300, height=600, bg="black")
+        self.frame1.place(x=20, y=30);
+
+        self.scoreLabel1 = Label(self.window, text="Score:", font=(30))
+        self.scoreLabel1.place(x=340, y=60)
+        self.scoreLabel2 = Label(self.window, text="0", fg='red', font=(30))
+        self.scoreLabel2.place(x=410, y=60)
+
+        self.frame2 = Frame(self.window, width=90, height=90, bg="black")
+        self.frame2.place(x=340, y=120)
+
+        self.canvas = Canvas(self.frame1, width=300, height=600, bg="black")
+        self.canvas1 = Canvas(self.frame2, width=90, height=90, bg="black")
+
+        self.btnStart = Button(self.window, text="开始", command=self.clickStart)
+        self.btnStart.place(x=340, y=400, width=80, height=25)
+
+        self.btnPause = Button(self.window, text="暂停", command=self.clickPause)
+        self.btnPause.place(x=340, y=450, width=80, height=25)
+
+        self.btnReStart = Button(self.window, text="重新开始", command=self.clickReStart)
+        self.btnReStart.place(x=340, y=500, width=80, height=25)
+
+        self.btnQuit = Button(self.window, text="退出", command=self.clickQuit)
+        self.btnQuit.place(x=340, y=550, width=80, height=25)
+
+        self.init()
+
+        # 获得当前的方块
+        self.getCurBrick()
+
+        # 按照数组，绘制格子
+
+        self.drawRect()
+
+        self.canvas.pack()
+
+        self.canvas1.pack()
+        self.window.mainloop()
+
+if __name__ == '__main__':
+    view = View()
