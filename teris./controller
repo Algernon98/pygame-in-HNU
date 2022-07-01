@@ -1,0 +1,43 @@
+from tkinter import *
+from random import *
+import threading
+from tkinter.messagebox import showinfo
+from tkinter.messagebox import askquestion
+import threading
+from time import sleep
+from Model import *
+from View import *
+#from benshouView import *
+class Ctrl(Model,View):
+
+    def __init__(self):
+        Model.__init__(self)
+        View.__init__(self)
+
+    def rungame(self):
+        self.init()
+
+        # 获得当前的方块
+        self.getCurBrick()
+
+        # 按照数组，绘制格子
+        self.drawRect()
+
+        self.canvas.pack()
+
+        self.canvas1.pack()
+
+        # 监听键盘事件
+        self.window.bind("<KeyPress>", self.onKeyboardEvent)
+
+        # 启动方块下落线程
+        self.downThread = threading.Thread(target=self.brickDown, args=())
+        self.downThread.start()
+
+        self.window.mainloop()
+
+        self.start = False
+
+if __name__ == '__main__':
+    use = Ctrl()
+    use.rungame()
