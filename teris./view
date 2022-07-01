@@ -1,0 +1,61 @@
+from tkinter import *
+from random import *
+import threading
+from tkinter.messagebox import showinfo
+from tkinter.messagebox import askquestion
+import threading
+from time import sleep
+
+class View():
+    def __init__(self):
+        # 标题
+        self.title = "Python暑期课程设计"
+        # 宽和高
+        self.width = 450
+        self.height = 670
+        self.window = Tk()
+        self.window.title(self.title)
+        self.window.minsize(self.width, self.height)
+        self.window.maxsize(self.width, self.height)
+
+        self.frame1 = Frame(self.window, width=300, height=600, bg="black")
+        self.frame1.place(x=20, y=30)
+
+        self.scoreLabel1 = Label(self.window, text="Score:", font=(30))
+        self.scoreLabel1.place(x=340, y=60)
+        self.scoreLabel2 = Label(self.window, text="0", fg='red', font=(30))
+        self.scoreLabel2.place(x=410, y=60)
+
+        self.frame2 = Frame(self.window, width=90, height=90, bg="black")
+        self.frame2.place(x=340, y=120)
+
+        self.canvas = Canvas(self.frame1, width=300, height=600, bg="black")  # 界面画布，被挡住了所以修改颜色看不出来，但最好还是保持黑色
+        self.canvas1 = Canvas(self.frame2, width=90, height=90, bg="black")  # 预览画布，虽然被遮住了但最好还是黑底
+
+        self.btnStart = Button(self.window, text="开始", command=self.clickStart)
+        self.btnStart.place(x=340, y=400, width=80, height=25)    #位置
+
+        self.btnPause = Button(self.window, text="暂停", command=self.clickPause)
+        self.btnPause.place(x=340, y=450, width=80, height=25)
+
+        self.btnReStart = Button(self.window, text="重新开始", command=self.clickReStart)
+        self.btnReStart.place(x=340, y=500, width=80, height=25)
+
+        self.btnQuit = Button(self.window, text="退出", command=self.clickQuit)
+        self.btnQuit.place(x=340, y=550, width=80, height=25)
+    def clickQuit(self):
+        ackQuit = askquestion("就走了？", "没你我可怎么活啊！")
+        if ackQuit == 'yes':
+            self.window.destroy()
+            exit()
+
+    def clickPause(self):
+        self.isPause = not self.isPause
+        print(self.isPause)
+        if not self.isPause:
+            self.btnPause["text"] = "暂停"
+        else:
+            self.btnPause["text"] = "恢复"
+
+if __name__ == '__main__':
+    view = View()
